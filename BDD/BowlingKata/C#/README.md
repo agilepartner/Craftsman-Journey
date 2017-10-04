@@ -1,5 +1,4 @@
 ## How To  
-2 projects have been created :  
     - Bowling : Contains the bowling Game calculator engine  
     - Bowling.Specs : The test project that will contain all the Specs for the game expressed as Feature files.
 
