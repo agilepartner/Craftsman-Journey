@@ -246,3 +246,7 @@ ModelManifest.xml
 
 # Sql server data tools binary file
 *.jfm
+
+# Maven
+target/
+.idea/
