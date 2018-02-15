@@ -1,46 +1,42 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Xunit;
 
 namespace AgilePartner.FizzBuzz.Tests
 {
-    [TestClass]
-    public class FizzBuzz_should
+    public class FizzBuzz_Specifications
     {
         protected FizzBuzz fizzBuzz;
 
-        [TestInitialize]
-        public void Setup()
+        public FizzBuzz_Specifications()
         {
             fizzBuzz = new FizzBuzz();
         }
 
-        [TestClass]
-        public class raise_an_argument_out_of_range_exception : FizzBuzz_should
+        public class raise_an_argument_out_of_range_exception : FizzBuzz_Specifications
         {
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            [Fact]
             public void when_number_is_smaller_than_1()
             {
-                fizzBuzz.Map(0);
+                Assert.Throws<ArgumentOutOfRangeException>(() => fizzBuzz.Map(0));
             }
 
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            [Fact]
             public void when_number_is_negative()
             {
-                fizzBuzz.Map(-1);
+                Assert.Throws<ArgumentOutOfRangeException>(() => fizzBuzz.Map(-1));
             }
 
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            [Fact]
             public void when_number_is_greater_than_100()
             {
-                fizzBuzz.Map(-1);
+                Assert.Throws<ArgumentOutOfRangeException>(() => fizzBuzz.Map(101));
             }
         }
 
-        [TestClass]
-        public class returns_Number : FizzBuzz_should
+        public class returns_Number : FizzBuzz_Specifications
         {
-            [TestMethod]
+            [Fact]
             public void when_number_is_not_multiple_of_3_or_5()
             {
                 fizzBuzz.Map(1).Should().Be("1");
@@ -48,10 +44,9 @@ namespace AgilePartner.FizzBuzz.Tests
             }
         }
 
-        [TestClass]
-        public class returns_Fizz : FizzBuzz_should
+        public class returns_Fizz : FizzBuzz_Specifications
         {
-            [TestMethod]
+            [Fact]
             public void when_number_is_multiple_of_3()
             {
                 fizzBuzz.Map(3).Should().Be("Fizz");
@@ -59,10 +54,9 @@ namespace AgilePartner.FizzBuzz.Tests
             }
         }
 
-        [TestClass]
-        public class returns_Buzz : FizzBuzz_should
+        public class returns_Buzz : FizzBuzz_Specifications
         {
-            [TestMethod]
+            [Fact]
             public void when_number_is_multiple_of_5()
             {
                 fizzBuzz.Map(5).Should().Be("Buzz");
@@ -70,10 +64,9 @@ namespace AgilePartner.FizzBuzz.Tests
             }
         }
 
-        [TestClass]
-        public class returns_FizzBuzz : FizzBuzz_should
+        public class returns_FizzBuzz : FizzBuzz_Specifications
         {
-            [TestMethod]
+            [Fact]
             public void when_number_is_multiple_of_3_and_5()
             {
                 fizzBuzz.Map(15).Should().Be("FizzBuzz");
