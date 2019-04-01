@@ -1,51 +1,34 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace AgilePartner.FizzBuzz
 {
-    public class FizzBuzz
+    public static class FizzBuzz
     {
-        public string Map(int number)
-        {
-            CheckNumber(number);
+        private static bool IsDividableBy(int a, int b) => a % b == 0;
+        private static bool IsNumberOutOfRange(int number) => number < 1 || number > 100;
 
-            if (IsDivisibleByThree(number) && IsDivisibleByFive(number))
-            {
-                return "FizzBuzz";
-            }
-            else if (IsDivisibleByThree(number))
-            {
-                return "Fizz";
-            }
-            else if (IsDivisibleByFive(number))
-            {
-                return "Buzz";
-            }
-            else
-            {
-                return number.ToString();
-            }
+        private static IEnumerable<Tuple<Func<int, bool>, Func<int, string>>> mapToString = 
+            new List<Tuple<Func<int, bool>, Func<int, string>>>
+        {
+            new Tuple<Func<int, bool>, Func<int, string>>(n => IsDividableBy(n, 15), (n) => "FizzBuzz"),
+            new Tuple<Func<int, bool>, Func<int, string>>(n => IsDividableBy(n, 3), (n) => "Fizz"),
+            new Tuple<Func<int, bool>, Func<int, string>>(n => IsDividableBy(n, 5), (n) => "Buzz"),
+            new Tuple<Func<int, bool>, Func<int, string>>((n) => true, (n) => n.ToString()),
+        };
+
+        public static string Map(int number)
+        {
+            if(IsNumberOutOfRange(number))
+                throw new ArgumentOutOfRangeException("number", number, "Number must be greater than 0 and lower than 101");
+
+            return mapToString
+                    .First(m => m.Item1.Invoke(number))
+                    .Item2
+                    .Invoke(number);
         }
 
-        private void CheckNumber(int number)
-        {
-            if (number < 1)
-            {
-                throw new ArgumentOutOfRangeException("number", number, "Number must be greater than 0");
-            }
-            else if (number > 100)
-            {
-                throw new ArgumentOutOfRangeException("number", number, "Number must be less than 101");
-            }
-        }
-
-        private bool IsDivisibleByFive(int number)
-        {
-            return number % 5 == 0;
-        }
-
-        private bool IsDivisibleByThree(int number)
-        {
-            return number % 3 == 0;
-        }
+        //1 line solution : Enumerable.Range(1, 100).Select(v => v % 15 > 0 ? v % 3 > 0 ? v % 5 > 0 ? "" + v : "Buzz" : "Fizz" : "FizzBuzz")
     }
 }

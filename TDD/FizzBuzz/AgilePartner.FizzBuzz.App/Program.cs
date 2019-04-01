@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Speech.Synthesis;
 
 namespace AgilePartner.FizzBuzz.App
@@ -7,18 +8,19 @@ namespace AgilePartner.FizzBuzz.App
     {
         static void Main(string[] args)
         {
-            var fizzBuzz = new FizzBuzz();
             var speechSynthesizer = new SpeechSynthesizer();
             speechSynthesizer.SelectVoiceByHints(VoiceGender.Female);
             //speechSynthesizer.Rate = 10;
 
-            for (int i = 1; i <= 100; i++)
-            {
-                var value = fizzBuzz.Map(i);
+            Enumerable.Range(1, 100)
+                .Select(FizzBuzz.Map)
+                .ToList()
+                .ForEach(value =>
+                {
+                    Console.WriteLine(value);
+                    speechSynthesizer.Speak(value);
+                });
 
-                Console.WriteLine(value);
-                speechSynthesizer.Speak(value);
-            }
             Console.Read();
         }
     }
