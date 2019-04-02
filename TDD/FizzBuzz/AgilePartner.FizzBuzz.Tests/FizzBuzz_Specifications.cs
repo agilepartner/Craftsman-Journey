@@ -6,7 +6,7 @@ namespace AgilePartner.FizzBuzz.Tests
 {
     public class FizzBuzz_Specifications
     {
-        protected static string Map(int number) => AgilePartner.FizzBuzz.fizzBuzz.map(number);
+        protected static string Map(int number) => FizzBuzz.Map(number);
 
         public class raise_an_argument_out_of_range_exception : FizzBuzz_Specifications
         {
