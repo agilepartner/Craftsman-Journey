@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgilePartner.Mock.Kata", "AgilePartner.Mock.Kata\AgilePartner.Mock.Kata.csproj", "{DBAA6634-E33F-4CE6-806D-88D59A88E0F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgilePartner.Mock.Kata.Tests", "AgilePartner.Mock.Kata.Tests\AgilePartner.Mock.Kata.Tests.csproj", "{29992068-AD8B-44BD-8164-54A80B544ADC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBAA6634-E33F-4CE6-806D-88D59A88E0F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBAA6634-E33F-4CE6-806D-88D59A88E0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBAA6634-E33F-4CE6-806D-88D59A88E0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBAA6634-E33F-4CE6-806D-88D59A88E0F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29992068-AD8B-44BD-8164-54A80B544ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29992068-AD8B-44BD-8164-54A80B544ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29992068-AD8B-44BD-8164-54A80B544ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29992068-AD8B-44BD-8164-54A80B544ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5577711-11CC-4973-973B-97365EBD7A38}
+	EndGlobalSection
+EndGlobal
