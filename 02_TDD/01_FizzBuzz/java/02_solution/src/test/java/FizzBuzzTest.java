@@ -1,21 +1,30 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 
-import static org.assertj.core.api.Assertions.assertThat;
+class fizzbuzz_should {
 
+    private FizzBuzz fizzbuzz;
 
-class FizzBuzzTest {
-
-    @Test
-    void fail() {
-        FizzBuzz fizzbuzz = new FizzBuzz();
-        String value = fizzbuzz.get(1);
-        assertThat(value)
-                .isEqualTo("1");
+        @BeforeEach
+    public void init() {
+        fizzbuzz = new FizzBuzz();
     }
 
-    @Test
-    void it_should_not_fail() {
-        assertThat(42)
-                .isEqualTo(42);
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 4, 7, 8, 11, 13, 14, 16, 17})
+    public void return_the_number(Integer value) {
+        String expected = value.toString();
+        String actual = fizzbuzz.get(value);
+        Assertions.assertEquals(expected, actual);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 6, 9, 12, 15, 18, 21})
+    public void return_fizz_for_multiples_of_3(Integer value) {
+        String actual = fizzbuzz.get(value);
+        Assertions.assertEquals(FizzBuzz.FIZZ, actual);
+    }
+
 }
