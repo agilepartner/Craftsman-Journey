@@ -1,6 +1,6 @@
-public class Thing {
-
-    public String callForAction() {
-        return "Dog";
+public class FizzBuzz {
+    
+    public String get(Integer value) {
+        throw new UnsupportedOperationException();
     }
 }

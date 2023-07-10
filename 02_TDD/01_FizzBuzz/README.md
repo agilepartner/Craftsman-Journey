@@ -47,7 +47,36 @@ For exemple :
 
 Same problem without using any `if` statement in your code.
 
-### ...
+### No modulo
+
+Same problem without using the modulo operator.
+
+### With parameters
+
+Add this method
+
+``` java
+public class FizzBuzz {
+
+    ...
+
+    public String get(int limit, int fizz, int buzz) {
+        ...
+    }
+}
+```
+
+with
+
+- limit = 100
+- fizz = 3
+- buzz = 5
+
+
+
+### Use predicates
+
+Same problem with passing two predicates to the method to inject the behavior.
 
 
 ## References
