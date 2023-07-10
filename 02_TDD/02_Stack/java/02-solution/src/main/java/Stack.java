@@ -12,7 +12,7 @@ public class Stack {
         if(stack.isEmpty()) {
             throw new EmptyStackException();
         }
-        var lastElement = stack.get(stack.size() - 1);
+        Object lastElement = stack.get(stack.size() - 1);
         stack.remove(lastElement);
 
         return lastElement;
