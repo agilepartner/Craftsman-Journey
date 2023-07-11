@@ -23,7 +23,7 @@ public class PrintStatementFeature {
     @BeforeEach
     public void init() {
         transactionRepository = new TransactionRepository(clock);
-        statementPrinter = new StatementPrinter();
+        statementPrinter = new StatementPrinter(console);
 
         account = new Account(transactionRepository, statementPrinter);
     }
