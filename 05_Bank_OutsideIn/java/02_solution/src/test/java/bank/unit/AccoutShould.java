@@ -44,7 +44,7 @@ public class AccoutShould {
 
     @Test
     public void print_a_statement() {
-        List<Transaction> transactions = asList(new Transaction());
+        List<Transaction> transactions = asList(new Transaction("11/07/2023", 100));
         given(transactionRepository.allTransactions()).willReturn(transactions);
 
         account.printStatement();

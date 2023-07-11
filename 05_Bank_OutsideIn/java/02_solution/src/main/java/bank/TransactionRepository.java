@@ -1,17 +1,29 @@
 package bank;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TransactionRepository {
-    public void addDeposit(int amount) {
-        throw new UnsupportedOperationException();
+    private final Clock clock;
+    private final List<Transaction> transactions;
+
+    public TransactionRepository(Clock clock) {
+        this.clock = clock;
+        this.transactions = new ArrayList<Transaction>();
     }
 
-    public void addWithdraw(int i) {
-        throw new UnsupportedOperationException();
+    public void addDeposit(int amount) {
+        Transaction deposit = new Transaction(clock.todayAsString(), amount);
+        transactions.add(deposit);
+    }
+
+    public void addWithdraw(int amount) {
+        Transaction withdraw = new Transaction(clock.todayAsString(), -amount);
+        transactions.add((withdraw));
     }
 
     public List<Transaction> allTransactions() {
-        throw new UnsupportedOperationException();
+        return Collections.unmodifiableList(transactions);
     }
 }

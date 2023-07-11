@@ -14,6 +14,7 @@ import static org.mockito.Mockito.*;
 public class PrintStatementFeature {
     @Mock
     Console console;
+    @Mock Clock clock;
 
     private TransactionRepository transactionRepository;
     private StatementPrinter statementPrinter;
@@ -21,7 +22,7 @@ public class PrintStatementFeature {
 
     @BeforeEach
     public void init() {
-        transactionRepository = new TransactionRepository();
+        transactionRepository = new TransactionRepository(clock);
         statementPrinter = new StatementPrinter();
 
         account = new Account(transactionRepository, statementPrinter);
