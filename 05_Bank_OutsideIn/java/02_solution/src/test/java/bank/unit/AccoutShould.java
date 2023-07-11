@@ -1,13 +1,18 @@
 package bank.unit;
 
 import bank.Account;
+import bank.StatementPrinter;
+import bank.Transaction;
 import bank.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.List;
 
+import static java.util.Arrays.asList;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -15,11 +20,12 @@ public class AccoutShould {
 
     @Mock
     TransactionRepository transactionRepository;
+    @Mock StatementPrinter statementPrinter;
     private Account account;
 
     @BeforeEach
     public void init() {
-        account = new Account(transactionRepository);
+        account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
@@ -36,4 +42,13 @@ public class AccoutShould {
         verify(transactionRepository).addWithdraw(100);
     }
 
+    @Test
+    public void print_a_statement() {
+        List<Transaction> transactions = asList(new Transaction());
+        given(transactionRepository.allTransactions()).willReturn(transactions);
+
+        account.printStatement();
+
+        verify(statementPrinter).print(transactions);
+    }
 }

@@ -16,12 +16,15 @@ public class PrintStatementFeature {
     Console console;
 
     private TransactionRepository transactionRepository;
+    private StatementPrinter statementPrinter;
     private Account account;
 
     @BeforeEach
     public void init() {
         transactionRepository = new TransactionRepository();
-        account = new Account(transactionRepository);
+        statementPrinter = new StatementPrinter();
+
+        account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
