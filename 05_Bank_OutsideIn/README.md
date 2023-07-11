@@ -62,3 +62,10 @@ You are not allowed to add any other public method to this class.
 
 **NOTE:** In order to keep the exercise simple, use _int_ for money and _String_ for dates.
 Also, you can ignore the formatting of the statement (spaces between pipes and words, etc).
+
+
+## Videos
+
+* [Sandro Mancuso - Outside In TDD Part I](https://www.youtube.com/watch?v=XHnuMjah6ps)
+* [Sandro Mancuso - Outside In TDD Part II](https://www.youtube.com/watch?v=gs0rqDdz3ko)
+* [Sandro Mancuso - Outside In TDD Part III](https://www.youtube.com/watch?v=R9OAt9AOrzI)
