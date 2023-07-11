@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +31,7 @@ public class PrintStatementFeature {
 
     @Test
     public void should_print_statement_containing_all_transactions() {
+        given(clock.todayAsString()).willReturn("01/04/2014", "02/04/2014", "10/04/2014");
         account.deposit(1000);
         account.withdraw(100);
         account.deposit(500);

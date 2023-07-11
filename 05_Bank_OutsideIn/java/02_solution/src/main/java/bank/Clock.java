@@ -3,7 +3,7 @@ package bank;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Clock {
+public class Clock {
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
