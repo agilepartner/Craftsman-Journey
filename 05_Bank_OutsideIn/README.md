@@ -31,17 +31,32 @@ DATE       | AMOUNT  | BALANCE
 
 Start with a class the following structure:
 
-```
-public class Account {
+* C#
+    ``` Csharp
+    public class Account {
 
-    public void Deposit(int amount);
+        public void Deposit(int amount);
 
-    public void Withdraw(int amount);
+        public void Withdraw(int amount);
 
-    public void PrintStatement();
+        public void PrintStatement();
 
-}
-```
+    }
+    ```
+
+* Java
+  
+    ``` Java
+    public class Account {
+
+        public void deposit(int amount);
+
+        public void withdrawal(int amount);
+
+        public void printStatement();
+
+        }
+    ```
 
 You are not allowed to add any other public method to this class.
 
