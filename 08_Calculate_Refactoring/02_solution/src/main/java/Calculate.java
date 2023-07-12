@@ -13,10 +13,12 @@ public class Calculate
      * @param years Time in years that the client is our customer
      * @return The price
      */
-    public static double calculate(double amount, int type, int years)  
+    public static double calculate(double amount, int type, int years)
     {  
         double result = 0;  
         double disc = (years > 5) ? (double)5 / 100 : (double)years / 100;
+
+        double amountMinusRatio = amount;
 
         // NotRegistered  
         if (type == 1)  
@@ -26,19 +28,27 @@ public class Calculate
         }  
         // SimpleCustomer  
         else if (type == 2)  
-        {  
-            result = (amount - (SIMPLE_CUSTOMER_RATIO * amount)) - disc * (amount - (SIMPLE_CUSTOMER_RATIO * amount));
-        }  
+        {
+            amountMinusRatio = amountMinusRatio(amount, SIMPLE_CUSTOMER_RATIO);
+        }
         // ValuableCustomer  
         else if (type == 3)  
-        {  
-            result = (amount - (VALUABLE_CUSTOMER_RATIO * amount)) - disc * (amount - (VALUABLE_CUSTOMER_RATIO * amount));
-        }  
+        {
+            amountMinusRatio = amountMinusRatio(amount, VALUABLE_CUSTOMER_RATIO);
+        }
         // MostValuableCustomer  
         else if (type == 4)  
-        {  
-            result = (amount - (MOST_VALUABLE_CUSTOMER_RATIO * amount)) - disc * (amount - (MOST_VALUABLE_CUSTOMER_RATIO * amount));
-        }  
+        {
+            amountMinusRatio = amountMinusRatio(amount, MOST_VALUABLE_CUSTOMER_RATIO);
+        }
+
+        result = amountMinusRatio - disc * amountMinusRatio;
+
         return result;  
     }
+
+    private static double amountMinusRatio(double amount, double ratio) {
+        return  amount - (amount * ratio);
+    }
+
 }
