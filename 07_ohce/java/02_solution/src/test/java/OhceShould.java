@@ -33,6 +33,13 @@ class OhceShould {
         ohce.run("Rosa");
         verify(console).printLine("¡Buenos días Rosa!");
     }
+    @Test
+    void greet_you_with_buenas_tardes_between_12_and_20() {
+        given(clock.getTimeOfDay()).willReturn(TimeOfDay.AFTERNOON);
+        ohce.run("Paco");
+        verify(console).printLine("¡Buenas tardes Paco!");
+    }
+
 }
 
 

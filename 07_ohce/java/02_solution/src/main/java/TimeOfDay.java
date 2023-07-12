@@ -4,10 +4,17 @@ public enum TimeOfDay {
         public String pattern() {
             return  "¡Buenos días %s!";
         }
-    }, NIGHT {
+    },
+    NIGHT {
         @Override
         public String pattern() {
             return  "¡Buenas noches %s!";
+        }
+    },
+    AFTERNOON {
+        @Override
+        public String pattern() {
+            return  "¡Buenas tardes %s!";
         }
     };
 
