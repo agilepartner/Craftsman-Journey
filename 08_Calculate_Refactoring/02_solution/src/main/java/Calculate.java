@@ -16,7 +16,7 @@ public class Calculate
     public static double calculate(double amount, int type, int years)
     {  
         double result = 0;  
-        double disc = (years > 5) ? (double)5 / 100 : (double)years / 100;
+        double disc = getDiscount(years);
 
         double amountMinusRatio = amount;
 
@@ -45,6 +45,10 @@ public class Calculate
         result = amountMinusRatio - disc * amountMinusRatio;
 
         return result;  
+    }
+
+    private static double getDiscount(int years) {
+        return (years > 5) ? (double) 5 / 100 : (double) years / 100;
     }
 
     private static double amountMinusRatio(double amount, double ratio) {
