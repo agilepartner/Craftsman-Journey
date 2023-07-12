@@ -1,6 +1,11 @@
 // Exercise: refactor me
 public class Calculate 
 {
+
+    public static final double SIMPLE_CUSTOMER_RATIO = 0.1;
+    public static final double VALUABLE_CUSTOMER_RATIO = 0.3;
+    public static final double MOST_VALUABLE_CUSTOMER_RATIO = 0.5;
+
     /**
      * Calculate the price of a given item for a specified customer
      * @param amount price
@@ -22,17 +27,17 @@ public class Calculate
         // SimpleCustomer  
         else if (type == 2)  
         {  
-            result = (amount - (0.1 * amount)) - disc * (amount - (0.1 * amount));  
+            result = (amount - (SIMPLE_CUSTOMER_RATIO * amount)) - disc * (amount - (SIMPLE_CUSTOMER_RATIO * amount));
         }  
         // ValuableCustomer  
         else if (type == 3)  
         {  
-            result = (amount - (0.3 * amount)) - disc * (amount - (0.3 * amount));   
+            result = (amount - (VALUABLE_CUSTOMER_RATIO * amount)) - disc * (amount - (VALUABLE_CUSTOMER_RATIO * amount));
         }  
         // MostValuableCustomer  
         else if (type == 4)  
         {  
-            result = (amount - (0.5 * amount)) - disc * (amount - (0.5 * amount));  
+            result = (amount - (MOST_VALUABLE_CUSTOMER_RATIO * amount)) - disc * (amount - (MOST_VALUABLE_CUSTOMER_RATIO * amount));
         }  
         return result;  
     }
