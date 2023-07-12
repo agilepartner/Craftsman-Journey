@@ -11,4 +11,8 @@ public class Ohce {
         TimeOfDay time = clock.getTimeOfDay();
         console.printLine(String.format(time.pattern(), name));
     }
+
+    public void send(String message) {
+
+    }
 }
