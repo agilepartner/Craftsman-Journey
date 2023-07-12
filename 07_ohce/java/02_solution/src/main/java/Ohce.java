@@ -6,5 +6,6 @@ public class Ohce {
     }
 
     public void run(String name) {
+        console.printLine(String.format("¡Buenas noches %s!", name));
     }
 }
