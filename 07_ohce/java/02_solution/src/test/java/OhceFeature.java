@@ -23,7 +23,7 @@ public class OhceFeature {
     @Test
     void should_be_polite_and_write_in_console_until_stopped() {
         given(clock.getTimeOfDay()).willReturn(TimeOfDay.AFTERNOON);
-        ohce.run("Pedro");
+        ohce.start("Pedro");
         ohce.send("hola");
         ohce.send("oto");
         ohce.send("stop");
