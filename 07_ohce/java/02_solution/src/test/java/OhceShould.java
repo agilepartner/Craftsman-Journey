@@ -20,7 +20,8 @@ class OhceShould {
 
     @Test
     void greet_you_with_buenas_noches_between_20_and_6() {
-        verify(console).printLine("¡Buenas noches Pedro");
+        ohce.run("Pedro");
+        verify(console).printLine("¡Buenas noches Pedro!");
     }
 }
 
