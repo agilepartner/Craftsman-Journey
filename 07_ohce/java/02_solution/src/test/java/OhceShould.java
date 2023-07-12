@@ -27,12 +27,14 @@ class OhceShould {
         ohce.run("Pedro");
         verify(console).printLine("¡Buenas noches Pedro!");
     }
+
     @Test
     void greet_you_with_buenos_dias_between_6_and_12() {
         given(clock.getTimeOfDay()).willReturn(TimeOfDay.MORNING);
         ohce.run("Rosa");
         verify(console).printLine("¡Buenos días Rosa!");
     }
+
     @Test
     void greet_you_with_buenas_tardes_between_12_and_20() {
         given(clock.getTimeOfDay()).willReturn(TimeOfDay.AFTERNOON);
@@ -40,6 +42,18 @@ class OhceShould {
         verify(console).printLine("¡Buenas tardes Paco!");
     }
 
+    @Test
+    void revert_a_word_sent() {
+        ohce.send("hola");
+        verify(console).printLine("aloh");
+    }
+
+    @Test
+    void celebrate_when_a_palindrome_is_sent() {
+        ohce.send("oto");
+        verify(console).printLine("oto");
+        verify(console).printLine("¡Bonita palabra!");
+    }
 }
 
 
