@@ -1,30 +1,17 @@
 
 public class TennisGame1 implements TennisGame {
 
-    private int score1 = 0;
-    private int score2 = 0;
-    private String player1Name;
-    private String player2Name;
+    private final Player player1;
+    private final Player player2;
 
     public TennisGame1(String player1Name, String player2Name) {
-        checkPlayerName(player1Name);
-        checkPlayerName(player2Name);
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
-    }
-
-    private void checkPlayerName(String playerName) {
-        if (playerName == null || playerName.isEmpty())
-            throw new IllegalArgumentException("playerName cannot be null or empty");
+        this.player1 = new Player(player1Name);
+        this.player2 = new Player(player2Name);
     }
 
     public void wonPoint(String playerName) {
-        if (player1Name.equals(playerName))
-            score1 += 1;
-        else if (player2Name.equals(playerName))
-            score2 += 1;
-        else
-            throw new UnsupportedOperationException("player does not play in this game");
+        player1.scorePointIfPlayer(playerName);
+        player2.scorePointIfPlayer(playerName);
     }
 
     public String getScore() {
@@ -37,11 +24,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean equality() {
-        return score1 == score2;
+        return player1.score() == player2.score();
     }
 
     private String equalityScore() {
-        return switch (score1) {
+        return switch (player1.score()) {
             case 0 -> "Love-All";
             case 1 -> "Fifteen-All";
             case 2 -> "Thirty-All";
@@ -50,11 +37,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean advantage() {
-        return score1 >= 4 || score2 >= 4;
+        return player1.score() >= 4 || player2.score() >= 4;
     }
 
     private String advantageScore() {
-        int difference = score1 - score2;
+        int difference = player1.score() - player2.score();
 
         if (difference == 1)
             return  "Advantage player1";
@@ -67,7 +54,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String defaultScore() {
-        return  getScore(score1) + "-" + getScore(score2);
+        return  getScore(player1.score()) + "-" + getScore(player2.score());
     }
 
     private String getScore(int score) {
