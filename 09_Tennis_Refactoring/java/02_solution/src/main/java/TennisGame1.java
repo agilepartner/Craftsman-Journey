@@ -1,6 +1,18 @@
 
 public class TennisGame1 implements TennisGame {
 
+    public static final String DEUCE = "Deuce";
+    public static final String LOVE = "Love";
+    public static final String FIFTEEN = "Fifteen";
+    public static final String THIRTY = "Thirty";
+    public static final String FORTY = "Forty";
+    public static final String ALL = "All";
+    public static final String FORMAT = "%s-%s";
+    public static final String ADVANTAGE_PLAYER_1 = "Advantage player1";
+    public static final String ADVANTAGE_PLAYER_2 = "Advantage player2";
+    public static final String WIN_FOR_PLAYER_1 = "Win for player1";
+    public static final String WIN_FOR_PLAYER_2 = "Win for player2";
+
     private final Player player1;
     private final Player player2;
 
@@ -15,6 +27,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
+
         if (equality())
             return equalityScore();
         if (advantage())
@@ -28,12 +41,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String equalityScore() {
-        return switch (player1.score()) {
-            case 0 -> "Love-All";
-            case 1 -> "Fifteen-All";
-            case 2 -> "Thirty-All";
-            default -> "Deuce";
-        };
+        return getScore(player1.score(), true);
     }
 
     private boolean advantage() {
@@ -44,26 +52,37 @@ public class TennisGame1 implements TennisGame {
         int difference = player1.score() - player2.score();
 
         if (difference == 1)
-            return  "Advantage player1";
+            return ADVANTAGE_PLAYER_1;
         else if (difference == -1)
-            return  "Advantage player2";
+            return ADVANTAGE_PLAYER_2;
         else if (difference >= 2)
-            return  "Win for player1";
+            return WIN_FOR_PLAYER_1;
         else
-            return  "Win for player2";
+            return WIN_FOR_PLAYER_2;
     }
 
     private String defaultScore() {
-        return  getScore(player1.score()) + "-" + getScore(player2.score());
+        return  formatScore(getScore(player1.score()), getScore(player2.score()));
     }
 
     private String getScore(int score) {
+        return  getScore(score, false);
+    }
+
+    private String getScore(int score, boolean isEqual) {
+        String allOrNothing = isEqual ? ALL : null;
         return switch (score) {
-            case 0 -> "Love";
-            case 1 -> "Fifteen";
-            case 2 -> "Thirty";
-            case 3 -> "Forty";
-            default -> throw new UnsupportedOperationException("Cannot score");
+            case 0 -> formatScore(LOVE, allOrNothing);
+            case 1 -> formatScore(FIFTEEN, allOrNothing);
+            case 2 -> formatScore(THIRTY, allOrNothing);
+            case 3 -> (isEqual) ? DEUCE : FORTY;
+            default -> DEUCE;
         };
+    }
+    private String formatScore(String score1, String score2){
+        if (score2 != null && !score2.isEmpty())
+            return  String.format(FORMAT, score1, score2);
+
+        return score1;
     }
 }
