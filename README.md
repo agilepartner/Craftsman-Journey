@@ -14,5 +14,5 @@
 ## Templates
 
 Here are some templates to start your katas
-* [C#](/00_Templates/C#/)
+* [C#](/00_Templates/C%23/)
 * [Java](/00_Templates/java/)
