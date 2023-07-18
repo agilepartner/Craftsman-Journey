@@ -1,10 +1,12 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.EmptyStackException;
 
-public class stack_should {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class Stack_should {
     private final Object object1 = new Object();
     private final Object object2 = new Object();
 
@@ -18,13 +20,13 @@ public class stack_should {
     @Test
     public void raise_an_exception_when_popped_and_empty() {
         Stack emptyStack = new Stack();
-        Assertions.assertThrows(EmptyStackException.class, emptyStack::pop);
+        assertThrows(EmptyStackException.class, emptyStack::pop);
     }
 
     @Test
     public void pop_the_last_object_pushed() {
         stack.push(object1);
-        Assertions.assertEquals(object1, stack.pop());
+        assertEquals(object1, stack.pop());
     }
 
     @Test
@@ -33,7 +35,7 @@ public class stack_should {
         stack.push(object1);
         stack.push(object2);
 
-        Assertions.assertEquals(object2, stack.pop());
-        Assertions.assertEquals(object1, stack.pop());
+        assertEquals(object2, stack.pop());
+        assertEquals(object1, stack.pop());
     }
 }
