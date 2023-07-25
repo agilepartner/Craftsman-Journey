@@ -1,10 +1,10 @@
 
 public class TennisGame1 implements TennisGame {
     
-    private int m_score1 = 0;
-    private int m_score2 = 0;
-    private String player1Name;
-    private String player2Name;
+    private int player1Score = 0;
+    private int player2Score2 = 0;
+    private final String player1Name;
+    private final String player2Name;
 
     public TennisGame1(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -12,65 +12,64 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            m_score1 += 1;
+        if (playerName.equals("player1"))
+            player1Score += 1;
         else
-            m_score2 += 1;
+            player2Score2 += 1;
     }
 
     public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (m_score1==m_score2)
+
+        if (scoresAreEqual())
+            return equalityLabel();
+
+        if (anyScoreIsInAdvantageRange())
+            return advantageRangeLabel();
+
+        return smallScoreLabel(player1Score) + "-" + smallScoreLabel(player2Score2);
+    }
+
+    private boolean scoresAreEqual() {
+        return player1Score == player2Score2;
+    }
+
+    private boolean anyScoreIsInAdvantageRange() {
+        return player1Score >= 4 || player2Score2 >= 4;
+    }
+
+    private boolean anyScoreIsInDeuceRange() {
+        return player1Score >= 3 || player2Score2 >= 3;
+    }
+
+    private String equalityLabel() {
+        if(anyScoreIsInDeuceRange()) return "Deuce";
+        return smallScoreLabel(player1Score) + "-All";
+    }
+
+    private String advantageLabel(String name) {
+        return "Advantage " + name;
+    }
+
+    private String winLabel(String name) {
+        return "Win for " + name;
+    }
+
+    private String smallScoreLabel(int score) {
+        return switch(score)
         {
-            switch (m_score1)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
-        }
-        else if (m_score1>=4 || m_score2>=4)
-        {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
+            case 0 -> "Love";
+            case 1 -> "Fifteen";
+            case 2 -> "Thirty";
+            case 3 -> "Forty";
+            default -> throw new IllegalArgumentException("Score " + score + " is not small");
+        };
+    }
+
+    private String advantageRangeLabel() {
+        int scoreDiff = player1Score - player2Score2;
+        if (scoreDiff == 1) return advantageLabel(player1Name);
+        else if (scoreDiff == -1) return advantageLabel(player2Name);
+        else if (scoreDiff >= 2) return winLabel(player1Name);
+        return winLabel(player2Name);
     }
 }
