@@ -1,8 +1,8 @@
 public class CurrencyConverter {
 
-    private final ChangeRateService changeRates;
+    private final ExchangeRateService changeRates;
 
-    public CurrencyConverter(ChangeRateService changeRates) {
+    public CurrencyConverter(ExchangeRateService changeRates) {
         this.changeRates = changeRates;
     }
 
