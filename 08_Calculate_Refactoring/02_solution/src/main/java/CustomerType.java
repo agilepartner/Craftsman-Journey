@@ -1,10 +1,5 @@
 public enum CustomerType {
-    NOT_REGISTERED (1, 0.0) {
-        @Override
-        public double discount(int years) {
-            return 0;
-        }
-    },
+    NOT_REGISTERED (1, 0.0),
     SIMPLE (2, 0.1),
     VALUABLE (3, 0.3),
     MOST_VALUABLE (4, 0.5);
@@ -26,7 +21,16 @@ public enum CustomerType {
     }
 
     public double discount(int years) {
-        return (years > 5) ? (double) 5 / 100 : (double) years / 100;
+        if (noLoyaltyDiscount())
+            return  0;
+        if (years > 5)
+            return 0.05;
+
+        return (double) years / 100;
+    }
+
+    private boolean noLoyaltyDiscount() {
+        return (this == NOT_REGISTERED);
     }
 
 }
