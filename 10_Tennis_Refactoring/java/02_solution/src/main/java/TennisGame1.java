@@ -53,12 +53,12 @@ public class TennisGame1 implements TennisGame {
 
         if (difference == 1)
             return ADVANTAGE_PLAYER_1;
-        else if (difference == -1)
+        if (difference == -1)
             return ADVANTAGE_PLAYER_2;
-        else if (difference >= 2)
+        if (difference >= 2)
             return WIN_FOR_PLAYER_1;
-        else
-            return WIN_FOR_PLAYER_2;
+
+        return WIN_FOR_PLAYER_2;
     }
 
     private String defaultScore() {
