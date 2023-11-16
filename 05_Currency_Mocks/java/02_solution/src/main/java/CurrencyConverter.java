@@ -11,7 +11,7 @@ public class CurrencyConverter {
     public Double convert(String fromCurrency, String toCurrency, Double amount) {
         CheckCurrency(fromCurrency, "From");
         CheckCurrency(toCurrency, "To");
-        CheckAmmout(amount);
+        CheckAmout(amount);
 
         Double rate = rates.getRate(fromCurrency, toCurrency);
         CheckRate(rate);
@@ -24,7 +24,7 @@ public class CurrencyConverter {
             throw new IllegalArgumentException("No '"+ name +"' currency specified");
     }
 
-    private void CheckAmmout(Double amount) {
+    private void CheckAmout(Double amount) {
         if (amount <= 0)
             throw new IllegalArgumentException("Amount should be positive");
     }
