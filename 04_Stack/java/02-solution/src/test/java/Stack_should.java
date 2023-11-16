@@ -19,8 +19,7 @@ public class Stack_should {
 
     @Test
     public void raise_an_exception_when_popped_and_empty() {
-        Stack emptyStack = new Stack();
-        assertThrows(EmptyStackException.class, emptyStack::pop);
+        assertThrows(EmptyStackException.class, stack::pop);
     }
 
     @Test
