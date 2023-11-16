@@ -27,3 +27,13 @@ Scenario: Normal game
   Given a new bowling game
   When I roll the following series: 10,7,3,9,0,10,0,8,8,2,0,6,10,10,10,8,1 
   Then my total score should be 167
+
+Scenario: A game not yet finished with strike last and no bonus yet
+  Given a new bowling game
+  When I roll the following series: 7,2,9,0,10
+  Then my total score should be 28
+
+Scenario: A game not yet finished with strike plus bonus last
+  Given a new bowling game
+  When I roll the following series: 7,2,9,0,10,5,2
+  Then my total score should be 42
