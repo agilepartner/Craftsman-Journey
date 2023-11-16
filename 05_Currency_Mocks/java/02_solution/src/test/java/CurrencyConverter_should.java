@@ -84,4 +84,11 @@ public class CurrencyConverter_should {
         assertThrows(IllegalArgumentException.class,
                 () -> converter.convert(Currency.USD, Currency.EUR,0.0));
     }
+    @Test
+    void fails_when_converted_amount_is_more_than_double_max_value() {
+        when(rates.getRate(Currency.USD, Currency.EUR)).thenReturn(10.0);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> converter.convert(Currency.USD, Currency.EUR,Double.MAX_VALUE));
+    }
 }

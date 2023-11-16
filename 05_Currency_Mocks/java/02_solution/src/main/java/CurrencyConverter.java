@@ -9,28 +9,35 @@ public class CurrencyConverter {
     }
 
     public Double convert(String fromCurrency, String toCurrency, Double amount) {
-        CheckCurrency(fromCurrency, "From");
-        CheckCurrency(toCurrency, "To");
-        CheckAmout(amount);
+        checkCurrency(fromCurrency, "From");
+        checkCurrency(toCurrency, "To");
+        checkAmout(amount);
 
         Double rate = rates.getRate(fromCurrency, toCurrency);
-        CheckRate(rate);
+        checkRate(rate);
+
+        checkConvertedAmount(amount, rate);
 
         return rate * amount;
     }
 
-    private void CheckCurrency(String currency, String name) {
+    private void checkCurrency(String currency, String name) {
         if (currency == null || currency.trim().isEmpty())
             throw new IllegalArgumentException("No '"+ name +"' currency specified");
     }
 
-    private void CheckAmout(Double amount) {
+    private void checkAmout(Double amount) {
         if (amount <= 0)
             throw new IllegalArgumentException("Amount should be positive");
     }
 
-    private void CheckRate(Double rate) {
+    private void checkRate(Double rate) {
         if (rate <= 0)
             throw new UnsupportedOperationException("No rate could be found");
+    }
+
+    private void checkConvertedAmount(Double amount, Double rate) {
+        if (rate * amount > Double.MAX_VALUE)
+            throw new IllegalArgumentException("Converted amount is greater than double maxvalue");
     }
 }
